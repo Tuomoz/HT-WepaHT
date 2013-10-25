@@ -1,0 +1,37 @@
+package wad.bookLibrary.services;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import wad.bookLibrary.models.Book;
+import wad.bookLibrary.repositories.BookRepository;
+
+public class JpaBookService implements BookService
+{
+    @Autowired
+    BookRepository bookRepo;
+    
+    @Override
+    public Book create(Book book)
+    {
+        return bookRepo.save(book);
+    }
+
+    @Override
+    public Book read(Long id)
+    {
+        return bookRepo.findOne(id);
+    }
+
+    @Override
+    public void delete(Long id)
+    {
+        bookRepo.delete(id);
+    }
+
+    @Override
+    public List<Book> list()
+    {
+        return bookRepo.findAll();
+    }
+
+}

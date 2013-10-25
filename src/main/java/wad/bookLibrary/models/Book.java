@@ -1,5 +1,6 @@
-package wad.bookLibrary.model;
+package wad.bookLibrary.models;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -12,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "Book")
-public class Book 
+public class Book implements Serializable 
 {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

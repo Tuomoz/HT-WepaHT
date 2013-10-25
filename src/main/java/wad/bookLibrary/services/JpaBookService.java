@@ -2,9 +2,11 @@ package wad.bookLibrary.services;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import wad.bookLibrary.models.Book;
 import wad.bookLibrary.repositories.BookRepository;
 
+@Service
 public class JpaBookService implements BookService
 {
     @Autowired

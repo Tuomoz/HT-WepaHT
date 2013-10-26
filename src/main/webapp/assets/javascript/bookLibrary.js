@@ -19,7 +19,7 @@ function BookCtrl($scope, $http) {
     $scope.testMsg = "working! ASDASDASD";
     
     $scope.fetchBooks = function() {
-        $http.get("app/books").success(function(list) {
+        $http.get("app/books/books.json").success(function(list) {
             $scope.books = list;
         });
     };

@@ -15,7 +15,7 @@ public class BookController
     @Autowired
     private BookService bookService;
     
-    @RequestMapping(value = "books", method = RequestMethod.GET)
+    @RequestMapping(value = "books/books.json", method = RequestMethod.GET)
     @ResponseBody
     public List<Book> list()
     {

@@ -3,7 +3,12 @@ var app = angular.module("BookLibrary", []);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/books', {
         templateUrl: 'templates/bookList.html',
-        controller: BookCtrl
+        controller: BookListCtrl
+    });
+    
+    $routeProvider.when('/newbook', {
+        templateUrl: 'templates/newbook.html',
+        controller: NewBookCtrl
     });
     
     $routeProvider.otherwise({redirectTo: '/books'});
@@ -15,7 +20,7 @@ app.filter("arrayToString", function() {
     }
 });
 
-function BookCtrl($scope, $http) {
+function BookListCtrl($scope, $http) {
     $scope.testMsg = "working! ASDASDASD";
     
     $scope.fetchBooks = function() {
@@ -25,4 +30,8 @@ function BookCtrl($scope, $http) {
     };
     
     $scope.fetchBooks();
+}
+
+function NewBookCtrl($scope, $http) {
+
 }

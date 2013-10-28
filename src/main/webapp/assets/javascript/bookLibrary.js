@@ -36,6 +36,10 @@ function BookListCtrl($scope, $http) {
 
 function NewBookCtrl($scope, $http) {
     $scope.newBook = {name: "", isbn: "", authors: [""], publishers: [""]};
+    
+    $scope.createBook = function () {
+        $http.post("app/books", $scope.newBook);
+    };
 
     $scope.removeAuthor = function (index) {
         $scope.newBook.authors.splice(index, 1);

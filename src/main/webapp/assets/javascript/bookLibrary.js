@@ -1,5 +1,5 @@
 "use strict";
-var app = angular.module("BookLibrary", ["ngRoute"]);
+var app = angular.module("BookLibrary", ["ngRoute", "ngResource"]);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/books', {
@@ -15,30 +15,30 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/books'});
 }]);
 
+app.factory('RestApi', ["$resource",
+    function ($resource) {
+        return {
+            Books: $resource("app/books/:id", {id: "@id"})
+        };
+    }]);
+
 app.filter("arrayToString", function () {
     return function (input) {
         return input.join(", ");
     };
 });
 
-function BookListCtrl($scope, $http) {
-    $scope.testMsg = "working! ASDASDASD";
-
-    $scope.fetchBooks = function () {
-        $http.get("app/books/books.json").success(function (list) {
-            $scope.books = list;
-            $scope.books[0].authors.push("asd");
-        });
-    };
-
-    $scope.fetchBooks();
+function BookListCtrl($scope, RestApi) {
+    $scope.books = RestApi.Books.query();
 }
 
-function NewBookCtrl($scope, $http) {
-    $scope.newBook = {name: "", isbn: "", authors: [""], publishers: [""]};
-    
+function NewBookCtrl($scope, RestApi) {
+    $scope.newBook = new RestApi.Books();
+    $scope.newBook.authors = [""];
+    $scope.newBook.publishers = [""];
+
     $scope.createBook = function () {
-        $http.post("app/books", $scope.newBook);
+        $scope.newBook.$save();
     };
 
     $scope.removeAuthor = function (index) {

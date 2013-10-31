@@ -30,7 +30,9 @@ app.config(['$routeProvider', "$locationProvider", function ($routeProvider, $lo
 app.factory('RestApi', ["$resource",
     function ($resource) {
         return {
-            Books: $resource("app/books/:id", {id: "@id"})
+            Books: $resource("app/books/:id", {id: "@id"}, {
+                        update: { method: 'PUT' }
+            })
         };
     }]);
 

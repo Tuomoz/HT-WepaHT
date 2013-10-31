@@ -1,22 +1,20 @@
-<div ng-controller="BookListCtrl">
-    Search: <input ng-model="query">
+Search: <input ng-model="query">
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <td>Book name</td>
-                <td>Authors</td>
-                <td>ISBN</td>
-                <td>Publishers</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="book in books | filter:query">
-                <td><a href="#books/{{book.id}}">{{book.name}}</a></td>
-                <td>{{book.authors | arrayToString}}</td>
-                <td>{{book.isbn}}</td>
-                <td>{{book.publishers | arrayToString}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Book name</td>
+            <td>Authors</td>
+            <td>ISBN</td>
+            <td>Publishers</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="book in books | filter:query">
+            <td><a href="#books/{{book.id}}">{{book.name}}</a></td>
+            <td>{{book.authors | arrayToString}}</td>
+            <td>{{book.isbn}}</td>
+            <td>{{book.publishers | arrayToString}}</td>
+        </tr>
+    </tbody>
+</table>

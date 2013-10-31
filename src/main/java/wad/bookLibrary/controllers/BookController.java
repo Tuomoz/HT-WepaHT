@@ -35,6 +35,13 @@ public class BookController
     @ResponseBody
     public Book postBook(@RequestBody Book book)
     {
-        return bookService.create(book);
+        return bookService.save(book);
+    }
+    
+    @RequestMapping(value = "books/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Book putBook(@RequestBody Book book)
+    {
+        return bookService.save(book);
     }
 }

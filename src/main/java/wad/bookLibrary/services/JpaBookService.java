@@ -13,7 +13,7 @@ public class JpaBookService implements BookService
     BookRepository bookRepo;
     
     @Override
-    public Book create(Book book)
+    public Book save(Book book)
     {
         return bookRepo.save(book);
     }

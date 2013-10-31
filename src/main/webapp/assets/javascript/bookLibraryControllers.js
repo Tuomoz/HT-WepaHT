@@ -7,35 +7,45 @@ function BookDetailsCtrl($scope, $routeParams, RestApi) {
 }
 
 function NewBookCtrl($scope, $location, RestApi) {
-    $scope.newBook = new RestApi.Books();
-    $scope.newBook.authors = [""];
-    $scope.newBook.publishers = [""];
+    $scope.pageHeader = "Add a new book";
+    $scope.book = new RestApi.Books();
+    $scope.book.authors = [""];
+    $scope.book.publishers = [""];
 
     $scope.createBook = function () {
-        var promise = $scope.newBook.$save();
+        var promise = $scope.book.$save();
 
-        promise.then(function (data) {
-            $location.path("/books");
+        promise.then(function (savedBook) {
+            $location.path("/books/" + savedBook.id);
         });
     };
 
     $scope.removeAuthor = function (index) {
-        $scope.newBook.authors.splice(index, 1);
+        $scope.book.authors.splice(index, 1);
     };
 
     $scope.addAuthor = function () {
-        $scope.newBook.authors.push("");
+        $scope.book.authors.push("");
     };
 
     $scope.removePublisher = function (index) {
-        $scope.newBook.publishers.splice(index, 1);
+        $scope.book.publishers.splice(index, 1);
     };
 
     $scope.addPublisher = function () {
-        $scope.newBook.publishers.push("");
+        $scope.book.publishers.push("");
     };
 }
 
-function EditBookCtrl($scope, RestApi) {
-    
+function EditBookCtrl($scope, $routeParams, $location, RestApi) {
+    $scope.pageHeader = "Edit book";
+    $scope.book = RestApi.Books.get({id: $routeParams.id});
+
+    $scope.createBook = function () {
+        var promise = $scope.book.$update();
+
+        promise.then(function (savedBook) {
+            $location.path("/books/" + savedBook.id);
+        });
+    };
 }

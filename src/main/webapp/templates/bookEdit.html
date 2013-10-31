@@ -1,30 +1,28 @@
-<div ng-controller="NewBookCtrl">
-    <h1>Add a new book</h1>
-    <form role="form">
-        <div class="form-group">
-            <label>Book name</label>
-            <input type="text" class="form-control" id="name" ng-model="newBook.name">
-        </div>
-        
-        <div class="form-group">
-            <label>ISBN</label>
-            <input type="text" class="form-control" id="isbn" ng-model="newBook.isbn">
-        </div>
-        
-        <div class="form-group" ng-repeat="author in newBook.authors track by $index">
-            <label>Author {{$index + 1}}</label>
-            <input type="text" class="form-control" id="author-{{$index}}" ng-model="newBook.authors[$index]">
-            <button class="btn btn-default" ng-hide="newBook.authors.length == 1" ng-click="removeAuthor($index)">Remove</button>
-        </div>
-        
-        <div class="form-group" ng-repeat="publisher in newBook.publishers track by $index">
-            <label>Publisher {{$index + 1}}</label>
-            <input type="text" class="form-control" id="publisher-{{$index}}" ng-model="newBook.publishers[$index]">
-            <button class="btn btn-default" ng-hide="newBook.publishers.length == 1" ng-click="removePublisher($index)">Remove</button>
-        </div>
-        
-        <button class="btn btn-default" ng-click="addAuthor()">Add author</button>
-        <button class="btn btn-default" ng-click="addPublisher()">Add publisher</button>
-        <button type="submit" class="btn btn-default" ng-click="createBook()">Submit</button>
-    </form>
-</div>
+<h1>{{pageHeader}}</h1>
+<form role="form">
+    <div class="form-group">
+        <label>Book name</label>
+        <input type="text" class="form-control" id="name" ng-model="book.name">
+    </div>
+
+    <div class="form-group">
+        <label>ISBN</label>
+        <input type="text" class="form-control" id="isbn" ng-model="book.isbn">
+    </div>
+
+    <div class="form-group" ng-repeat="author in book.authors track by $index">
+        <label>Author {{$index + 1}}</label>
+        <input type="text" class="form-control" id="author-{{$index}}" ng-model="book.authors[$index]">
+        <button class="btn btn-default" ng-hide="book.authors.length == 1" ng-click="removeAuthor($index)">Remove</button>
+    </div>
+
+    <div class="form-group" ng-repeat="publisher in book.publishers track by $index">
+        <label>Publisher {{$index + 1}}</label>
+        <input type="text" class="form-control" id="publisher-{{$index}}" ng-model="book.publishers[$index]">
+        <button class="btn btn-default" ng-hide="book.publishers.length == 1" ng-click="removePublisher($index)">Remove</button>
+    </div>
+
+    <button class="btn btn-default" ng-click="addAuthor()">Add author</button>
+    <button class="btn btn-default" ng-click="addPublisher()">Add publisher</button>
+    <button type="submit" class="btn btn-default" ng-click="createBook()">Submit</button>
+</form>

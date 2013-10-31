@@ -2,6 +2,16 @@
 var app = angular.module("BookLibrary", ["ngRoute", "ngResource"]);
 
 app.config(['$routeProvider', "$locationProvider", function ($routeProvider, $locationProvider) {
+    $routeProvider.when('/books/:id/edit', {
+        templateUrl: 'templates/bookEdit.html',
+        controller: EditBookCtrl
+    });
+    
+    $routeProvider.when('/books/new', {
+        templateUrl: 'templates/bookEdit.html',
+        controller: NewBookCtrl
+    });
+    
     $routeProvider.when('/books/:id', {
         templateUrl: 'templates/bookDetails.html',
         controller: BookDetailsCtrl
@@ -10,11 +20,6 @@ app.config(['$routeProvider', "$locationProvider", function ($routeProvider, $lo
     $routeProvider.when('/books', {
         templateUrl: 'templates/bookList.html',
         controller: BookListCtrl
-    });
-
-    $routeProvider.when('/newbook', {
-        templateUrl: 'templates/newbook.html',
-        controller: NewBookCtrl
     });
 
     $routeProvider.otherwise({redirectTo: '/books'});

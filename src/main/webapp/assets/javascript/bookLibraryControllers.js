@@ -35,3 +35,7 @@ function NewBookCtrl($scope, $location, RestApi) {
         $scope.newBook.publishers.push("");
     };
 }
+
+function EditBookCtrl($scope, RestApi) {
+    
+}

@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="book in books | filter:query">
-                <td>{{book.name}}</td>
+                <td><a href="#books/{{book.id}}">{{book.name}}</a></td>
                 <td>{{book.authors | arrayToString}}</td>
                 <td>{{book.isbn}}</td>
                 <td>{{book.publishers | arrayToString}}</td>

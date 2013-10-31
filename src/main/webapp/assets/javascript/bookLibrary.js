@@ -1,7 +1,12 @@
 "use strict";
 var app = angular.module("BookLibrary", ["ngRoute", "ngResource"]);
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', "$locationProvider", function ($routeProvider, $locationProvider) {
+    $routeProvider.when('/books/:id', {
+        templateUrl: 'templates/bookDetails.html',
+        controller: BookDetailsCtrl
+    });
+    
     $routeProvider.when('/books', {
         templateUrl: 'templates/bookList.html',
         controller: BookListCtrl
@@ -13,6 +18,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 
     $routeProvider.otherwise({redirectTo: '/books'});
+
+    //$locationProvider.html5Mode(true).hashPrefix('!');
 }]);
 
 app.factory('RestApi', ["$resource",
@@ -32,13 +39,21 @@ function BookListCtrl($scope, RestApi) {
     $scope.books = RestApi.Books.query();
 }
 
-function NewBookCtrl($scope, RestApi) {
+function BookDetailsCtrl($scope, $routeParams, RestApi) {
+    $scope.book = RestApi.Books.get({id: $routeParams.id});
+}
+
+function NewBookCtrl($scope, $location, RestApi) {
     $scope.newBook = new RestApi.Books();
     $scope.newBook.authors = [""];
     $scope.newBook.publishers = [""];
 
     $scope.createBook = function () {
-        $scope.newBook.$save();
+        var promise = $scope.newBook.$save();
+
+        promise.then(function (data) {
+            $location.path("/books");
+        });
     };
 
     $scope.removeAuthor = function (index) {

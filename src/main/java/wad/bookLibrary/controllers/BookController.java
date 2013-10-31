@@ -3,6 +3,7 @@ package wad.bookLibrary.controllers;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,13 @@ public class BookController
     public List<Book> list()
     {
         return bookService.list();
+    }
+    
+    @RequestMapping(value = "books/{id}")
+    @ResponseBody
+    public Book getBook(@PathVariable Long id)
+    {
+        return bookService.read(id);
     }
     
     @RequestMapping(value = "books", method = RequestMethod.POST)

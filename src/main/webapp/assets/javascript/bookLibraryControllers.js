@@ -48,4 +48,20 @@ function EditBookCtrl($scope, $routeParams, $location, RestApi) {
             $location.path("/books/" + savedBook.id);
         });
     };
+    
+    $scope.removeAuthor = function (index) {
+        $scope.book.authors.splice(index, 1);
+    };
+
+    $scope.addAuthor = function () {
+        $scope.book.authors.push("");
+    };
+
+    $scope.removePublisher = function (index) {
+        $scope.book.publishers.splice(index, 1);
+    };
+
+    $scope.addPublisher = function () {
+        $scope.book.publishers.push("");
+    };
 }

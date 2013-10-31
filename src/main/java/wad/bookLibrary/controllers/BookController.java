@@ -44,4 +44,11 @@ public class BookController
     {
         return bookService.save(book);
     }
+    
+    @RequestMapping(value = "books/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteBook(@PathVariable Long id)
+    {
+        bookService.delete(id);
+    }
 }

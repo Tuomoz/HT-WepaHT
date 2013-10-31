@@ -2,8 +2,16 @@ function BookListCtrl($scope, RestApi) {
     $scope.books = RestApi.Books.query();
 }
 
-function BookDetailsCtrl($scope, $routeParams, RestApi) {
+function BookDetailsCtrl($scope, $routeParams, $location, RestApi) {
     $scope.book = RestApi.Books.get({id: $routeParams.id});
+    
+    $scope.deleteBook = function () {
+        var promise = $scope.book.$delete();
+        
+        promise.then(function () {
+            $location.path("/books");
+        });
+    };
 }
 
 function NewBookCtrl($scope, $location, RestApi) {

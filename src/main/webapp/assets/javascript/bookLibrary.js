@@ -38,6 +38,9 @@ app.factory('RestApi', ["$resource",
 
 app.filter("arrayToString", function () {
     return function (input) {
+        if (input === undefined)
+            return "";
+        
         return input.join(", ");
     };
 });

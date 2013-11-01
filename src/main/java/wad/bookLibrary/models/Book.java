@@ -2,6 +2,7 @@ package wad.bookLibrary.models;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -35,10 +36,12 @@ public class Book implements Serializable
     
     @Column(name = "authors")
     @ElementCollection
+    @CollectionTable(name = "book_authors")
     List<String> authors;
     
     @Column(name = "publishers")
     @ElementCollection
+    @CollectionTable(name = "book_publishers")
     List<String> publishers;
 
     public Long getId()

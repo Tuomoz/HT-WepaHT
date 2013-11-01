@@ -7,6 +7,7 @@ Search: <input ng-model="query">
             <td>Authors</td>
             <td>ISBN</td>
             <td>Publishers</td>
+            <td>Publishing year</td>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@ Search: <input ng-model="query">
             <td>{{book.authors | arrayToString}}</td>
             <td>{{book.isbn}}</td>
             <td>{{book.publishers | arrayToString}}</td>
+            <td>{{book.publishingYear}}</td>
         </tr>
     </tbody>
 </table>

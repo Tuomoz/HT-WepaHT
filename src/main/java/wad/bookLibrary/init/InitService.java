@@ -28,6 +28,7 @@ public class InitService
         book.setIsbn("1234567890");
         book.setName("Book 1");
         book.setPublishers(pubs);
+        book.setPublishingYear(new Integer(2013));
         bookRepo.save(book);
         
         book = new Book();
@@ -37,6 +38,7 @@ public class InitService
         book.setIsbn("9876543210");
         book.setName("Book 2");
         book.setPublishers(pubs);
+        book.setPublishingYear(new Integer(1991));
         bookRepo.save(book);
     }
 }

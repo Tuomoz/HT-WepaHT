@@ -9,6 +9,11 @@
         <label>ISBN</label>
         <input type="text" class="form-control" id="isbn" ng-model="book.isbn">
     </div>
+    
+    <div class="form-group">
+        <label>Publishing year</label>
+        <input type="text" class="form-control" id="publishingYear" ng-model="book.publishingYear">
+    </div>
 
     <div class="form-group" ng-repeat="author in book.authors track by $index">
         <label>Author {{$index + 1}}</label>

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -27,6 +28,10 @@ public class Book implements Serializable
     @Column(name = "ISBN")
     @NotBlank
     String isbn;
+    
+    @Column(name = "publishingYear")
+    @NotNull
+    Integer publishingYear;
     
     @Column(name = "authors")
     @ElementCollection
@@ -84,5 +89,15 @@ public class Book implements Serializable
     public void setPublishers(List<String> publishers)
     {
         this.publishers = publishers;
+    }
+    
+    public Integer getPublishingYear()
+    {
+        return publishingYear;
+    }
+
+    public void setPublishingYear(Integer publishingYear)
+    {
+        this.publishingYear = publishingYear;
     }
 }

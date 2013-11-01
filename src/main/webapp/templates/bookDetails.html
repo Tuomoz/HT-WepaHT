@@ -6,6 +6,8 @@
     <dd>{{book.authors | arrayToString}}</dd>
     <dt>Publishers</dt>
     <dd>{{book.publishers | arrayToString}}</dd>
+    <dt>Publishing year</dt>
+    <dd>{{book.publishingYear}}</dd>
 </dl>
 <a href="#books/{{book.id}}/edit" class="btn btn-default">Edit book</a>
 <button class="btn btn-danger" ng-click="deleteBook()">Delete book</button>

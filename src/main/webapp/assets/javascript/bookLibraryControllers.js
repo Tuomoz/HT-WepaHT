@@ -1,3 +1,19 @@
+function NavigationCtrl($scope, $location) {
+    $scope.items = [
+        {path: '/books', title: 'Home'},
+        {path: '/books/new', title: 'New book'},
+        {path: '/books/openlibrary', title: 'Search Open Library'},
+        {path: '/login', title: 'login'}
+    ];
+
+    $scope.isActive = function(item) {
+        if (item.path === $location.path()) {
+            return true;
+        }
+        return false;
+    };
+}
+
 function BookListCtrl($scope, RestApi) {
     $scope.books = RestApi.Books.query();
 }

@@ -1,1 +1,8 @@
-body { padding-top: 70px; }
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+h1 {
+    padding-bottom: 50px;
+}

@@ -12,6 +12,11 @@ app.config(['$routeProvider', "$locationProvider", function ($routeProvider, $lo
         controller: NewBookCtrl
     });
     
+    $routeProvider.when('/books/openlibrary', {
+        templateUrl: 'templates/openlibrary.html',
+        controller: OpenLibraryCtrl
+    });
+    
     $routeProvider.when('/books/:id', {
         templateUrl: 'templates/bookDetails.html',
         controller: BookDetailsCtrl

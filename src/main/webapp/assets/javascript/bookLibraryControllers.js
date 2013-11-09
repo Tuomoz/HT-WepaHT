@@ -14,6 +14,14 @@ function NavigationCtrl($scope, $location) {
     };
 }
 
+function AlertCtrl($scope, Alerts) {
+    $scope.alerts = Alerts.alerts;
+
+    $scope.closeAlert = function(index) {
+      Alerts.closeAlert(index);
+    };
+}
+
 function BookListCtrl($scope, RestApi) {
     $scope.books = RestApi.Books.query();
 }
@@ -30,7 +38,7 @@ function BookDetailsCtrl($scope, $routeParams, $location, RestApi) {
     };
 }
 
-function NewBookCtrl($scope, $location, RestApi, $http) {
+function NewBookCtrl($scope, $location, RestApi, $http, Alerts) {
     $scope.pageHeader = "Add a new book";
     $scope.book = new RestApi.Books();
     $scope.book.authors = [""];
@@ -48,6 +56,10 @@ function NewBookCtrl($scope, $location, RestApi, $http) {
         var url = "https://openlibrary.org/api/books?bibkeys=ISBN:" + $scope.book.isbn + "&callback=JSON_CALLBACK&jscmd=details";
 
         $http.jsonp(url).success(function (data) {
+            if (Object.getOwnPropertyNames(data).length === 0) {
+                Alerts.addAlert("danger", "No data found for ISBN " + $scope.book.isbn);
+            }
+                
             for (var prop in data) {
                 var details = data[prop].details;
                 console.log(details);
@@ -65,6 +77,8 @@ function NewBookCtrl($scope, $location, RestApi, $http) {
                 }
                 break; // Breaking just in case
             }
+        }).error(function () {
+            Alerts.addAlert("danger", "Something went wrong");
         });
     };
 

@@ -1,5 +1,11 @@
 "use strict";
-var app = angular.module("BookLibrary", ["ngRoute", "ngResource"]);
+var app = angular.module("BookLibrary", ["ngRoute", "ngResource", 'ui.bootstrap']);
+
+app.run(function ($rootScope, Alerts) {
+    $rootScope.$on('$locationChangeSuccess', function () {
+        Alerts.removeAlerts();
+    });
+});
 
 app.config(['$routeProvider', "$locationProvider", function ($routeProvider, $locationProvider) {
     $routeProvider.when('/books/:id/edit', {
@@ -40,6 +46,23 @@ app.factory('RestApi', ["$resource",
             })
         };
     }]);
+
+app.factory("Alerts", ["$timeout", function ($timeout) {
+    return {
+        alerts: [],
+        addAlert: function (type, message) {
+            this.alerts.length = 0; // Multiple alerts would need more work
+            var newAlert = {type: type, message: message};
+            this.alerts.push(newAlert);
+        },
+        closeAlert: function (index) {
+            this.alerts.splice(index, 1);
+        },
+        removeAlerts: function () {
+            this.alerts.length = 0;
+        }
+    };
+}]);
 
 app.filter("arrayToString", function () {
     return function (input) {

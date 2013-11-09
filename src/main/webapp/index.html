@@ -9,6 +9,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-route.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-resource.min.js"></script>
+        <script src="assets/javascript/ui-bootstrap-tpls-0.6.0.min.js"></script>
         <script src="assets/javascript/bookLibrary.js"></script>
         <script src="assets/javascript/bookLibraryControllers.js"></script>
     </head>
@@ -26,6 +27,13 @@
         </nav>
 
         <div class="container">
+
+
+            <div ng-controller="AlertCtrl">
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)" data-ng-animate="{enter: 'view-enter', leave: 'view-leave'}">{{alert.message}}</alert>
+            </div>
+
+
             <div ng-view></div>
         </div>
         

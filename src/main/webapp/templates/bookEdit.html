@@ -1,10 +1,10 @@
 <h1>{{pageHeader}}</h1>
 <form class="form-horizontal col-md-8 col-md-offset-2" role="form" name="bookForm">
-    <div class="form-group" ng-class="{'has-error': bookForm.name.$invalid}">
+    <p>All fields required</p>
+    <div class="form-group">
         <label class="col-sm-2 control-label">Book name</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="name" name="name" ng-model="book.name" required>
-            <p ng-show="bookForm.name.$error.required" class="help-block">Required</p>
         </div>
     </div>
 
@@ -12,7 +12,6 @@
         <label class="col-sm-2 control-label">ISBN</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="isbn" name="isbn" ng-model="book.isbn" required>
-            <p ng-show="bookForm.isbn.$error.required" class="help-block">Required</p>
         </div>
     </div>
     
@@ -20,7 +19,6 @@
         <label class="col-sm-2 control-label">Publishing year</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="publishingYear" name="publishingYear" ng-model="book.publishingYear" required>
-            <p ng-show="bookForm.publishingYear.$error.required" class="help-block">Required</p>
         </div>
     </div>
 
@@ -28,7 +26,6 @@
         <label class="col-sm-2 control-label">Author {{$index + 1}}</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="author-{{$index}}" name="author-{{$index}}" ng-model="book.authors[$index]" required>
-            <p ng-show="" class="help-block">Required</p>
             <button class="btn btn-warning btn-sm" ng-hide="book.authors.length == 1" ng-click="removeAuthor($index)">Remove</button>
         </div>
     </div>
@@ -36,8 +33,7 @@
     <div class="form-group" ng-repeat="publisher in book.publishers track by $index">
         <label class="col-sm-2 control-label">Publisher {{$index + 1}}</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="publisher-{{$index}}" ng-model="book.publishers[$index]">
-            <p ng-show="bookForm.name.$error.required" class="help-block">Required</p>
+            <input type="text" class="form-control" id="publisher-{{$index}}" ng-model="book.publishers[$index]" required>
             <button class="btn btn-warning btn-sm" ng-hide="book.publishers.length == 1" ng-click="removePublisher($index)">Remove</button>
         </div>
     </div>
@@ -45,5 +41,5 @@
     <button class="btn btn-info" ng-click="searchIsbn()">Fill form using ISBN</button>
     <button class="btn btn-primary" ng-click="addAuthor()">Add author</button>
     <button class="btn btn-primary" ng-click="addPublisher()">Add publisher</button>
-    <button type="submit" class="btn btn-success" ng-click="createBook()">Submit</button>
+    <button type="submit" class="btn btn-success" ng-click="createBook()" ng-disabled="bookForm.$invalid">Submit</button>
 </form>
